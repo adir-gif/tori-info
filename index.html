@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pingo · מידע משפטי</title>
+<style>
+  :root{ --bg:#f7fbff; --card:#fff; --text:#16222e; --muted:#5b6b7a;
+         --ice:#2d7dd2; --line:#e2ecf5; }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1720; --card:#16212c; --text:#e8f0f7; --muted:#a7b8c6;
+           --ice:#6fb3f2; --line:#243441; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);min-height:100vh;
+       display:flex;align-items:center;justify-content:center;
+       font-family:'Rubik','Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7}
+  .wrap{max-width:520px;padding:40px 22px;width:100%}
+  h1{font-size:34px;margin:0 0 4px;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin:0 0 28px}
+  a.row{display:block;background:var(--card);border:1px solid var(--line);
+        border-radius:14px;padding:16px 18px;margin:10px 0;text-decoration:none;color:inherit}
+  a.row strong{color:var(--ice);display:block;font-size:17px}
+  a.row span{color:var(--muted);font-size:15px}
+  footer{margin-top:28px;color:var(--muted);font-size:14px}
+  footer a{color:var(--ice)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Pingo</h1>
+  <p class="sub">אפליקציית מטלות, הרגלים ופרסים למשפחות</p>
+
+  <a class="row" href="./privacy.html">
+    <strong>מדיניות הפרטיות</strong>
+    <span>איזה מידע נאסף, לאן הוא נשלח, ומה לא נאסף</span>
+  </a>
+
+  <a class="row" href="./delete-account.html">
+    <strong>מחיקת חשבון ומידע</strong>
+    <span>איך מוחקים את החשבון ואת כל המידע של המשפחה</span>
+  </a>
+
+  <footer>
+    יצירת קשר · <a href="mailto:adir@perfumeclean.com">adir@perfumeclean.com</a>
+  </footer>
+</div>
+</body>
+</html>
