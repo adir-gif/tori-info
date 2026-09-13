@@ -1,77 +1,43 @@
-<!doctype html>
-<!--
-  ⚠️ **נוצר על ידי `pingo-legal/build.js` — אין לערוך כאן.**
-  התוכן: `pingo-legal/content/en.js` · המעטפת: `build.js`.
--->
-<html lang="en" dir="ltr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy policy · Tori</title>
-<style>
-  :root{
-    --bg:#f7fbff; --card:#fff; --text:#16222e; --muted:#5b6b7a; --faint:#8496a6;
-    --ice:#2d7dd2; --line:#e2ecf5; --warn:#fff8e6; --warnline:#f0dfae;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#0f1720; --card:#16212c; --text:#e8f0f7; --muted:#a7b8c6; --faint:#7d8fa0;
-           --ice:#6fb3f2; --line:#243441; --warn:#2a2416; --warnline:#4a4023; }
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);
-       font-family:'Rubik','Segoe UI',system-ui,-apple-system,sans-serif;
-       line-height:1.75;font-size:17px}
-  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 80px}
-  header{padding:28px 0 8px;border-bottom:2px solid var(--line);margin-bottom:28px}
-  h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}
-  h2{font-size:21px;margin:36px 0 10px;color:var(--ice);letter-spacing:-.01em}
-  h3{font-size:17px;margin:22px 0 6px}
-  .sub{color:var(--muted);font-size:15px;margin:0}
-  p,li{color:var(--text)}
-  ul{padding-inline-start:22px}
-  ol{padding-inline-start:22px}
-  li{margin:7px 0}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:18px 0}
-  .note{background:var(--warn);border-color:var(--warnline)}
-  .muted{color:var(--muted);font-size:15px}
-  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15.5px}
-  th,td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--muted);font-weight:600;font-size:14px}
-  a{color:var(--ice)}
-  code{background:var(--line);padding:1px 6px;border-radius:5px;font-size:14px;direction:ltr;display:inline-block}
-  .btn{display:inline-block;background:var(--ice);color:#fff;text-decoration:none;
-       padding:13px 22px;border-radius:12px;font-weight:600;margin-top:6px}
-  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:14px}
+/**
+ * pingo-legal/content/en.js — English.
+ *
+ * ‼️ **Translated from `he.js`, which is the source of truth.** Section
+ * numbering, ordering and the wording of every commitment follow it exactly.
+ * A change made only here would make the two documents state different
+ * things about the same app.
+ *
+ * ⚠️ This is also the version served at the site root — see `build.js`.
+ */
 
-  /* בורר השפה — שורה דקה מעל הכותרת, לא ניווט */
-  .langs{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;
-         padding-bottom:14px;margin-bottom:-10px}
-  .langs a{text-decoration:none;color:var(--muted)}
-  .langs a[aria-current]{color:var(--text);font-weight:600}
+const MAIL = 'adirkatar@gmail.com';
+const SUBJ = 'Tori%20account%20deletion%20request';
 
-  /* ── דף הבית ─────────────────────────────────────────────────────── */
-  a.row{display:block;background:var(--card);border:1px solid var(--line);
-        border-radius:14px;padding:16px 18px;margin:10px 0;text-decoration:none;color:inherit}
-  a.row strong{color:var(--ice);display:block;font-size:17px}
-  a.row span{color:var(--muted);font-size:15px}
-</style>
-</head>
-<body>
-<div class="wrap">
+module.exports = {
+  index: {
+    title: 'Tori · Legal',
+    h1: 'Tori',
+    sub: 'A chores, habits and rewards app for families',
+    body: `
+<a class="row" href="./privacy.html">
+  <strong>Privacy policy</strong>
+  <span>What is collected, where it goes, and what is not collected</span>
+</a>
 
-  <nav class="langs">
-    <a href="./en/privacy.html" lang="en" aria-current="page">English</a>
-    <a href="./he/privacy.html" lang="he">עברית</a>
-    <a href="./es/privacy.html" lang="es">Español</a>
-    <a href="./fr/privacy.html" lang="fr">Français</a>
-    <a href="./ar/privacy.html" lang="ar">العربية</a>
-  </nav>
+<a class="row" href="./delete-account.html">
+  <strong>Delete your account and data</strong>
+  <span>How to delete the account and all of the family's data</span>
+</a>
 
-<header>
-  <h1>Tori privacy policy</h1>
-  <p class="sub">Last updated: 13 September 2026 · version 1.2</p>
-</header>
+<footer>
+  Contact · <a href="mailto:${MAIL}">${MAIL}</a>
+</footer>`,
+  },
 
+  privacy: {
+    title: 'Privacy policy · Tori',
+    h1: 'Tori privacy policy',
+    sub: 'Last updated: 13 September 2026 · version 1.2',
+    body: `
 <p>
   Tori is a chores, habits and rewards app for families. This document explains exactly
   <strong>what information is collected, where it is sent, what is not collected, and how to
@@ -95,7 +61,7 @@
 <p>
   The operator of the app and controller of the data is the developer of Tori.
   For any privacy question, request or complaint:
-  <a href="mailto:adirkatar@gmail.com">adirkatar@gmail.com</a>.
+  <a href="mailto:${MAIL}">${MAIL}</a>.
   We respond within 30 days.
 </p>
 
@@ -273,7 +239,7 @@
     abuse. To request that it be deleted as well, contact us at the address below.</p>
   <p style="margin-bottom:0"><strong>Without the app:</strong>
     You can send a deletion request to
-    <a href="mailto:adirkatar@gmail.com?subject=Tori%20account%20deletion%20request">adirkatar@gmail.com</a>.
+    <a href="mailto:${MAIL}?subject=${SUBJ}">${MAIL}</a>.
     More detail on the <a href="./delete-account.html">account deletion</a> page.</p>
 </div>
 
@@ -309,13 +275,82 @@
 
 <h2>12 · Contact</h2>
 <p>
-  <a href="mailto:adirkatar@gmail.com">adirkatar@gmail.com</a>
+  <a href="mailto:${MAIL}">${MAIL}</a>
 </p>
 
 <footer>
   Tori · Privacy policy · version 1.2 · 13 September 2026
-</footer>
+</footer>`,
+  },
 
+  deleteAccount: {
+    title: 'Delete your account · Tori',
+    h1: 'Delete your account and data',
+    sub: 'Tori · updated 13 September 2026',
+    body: `
+<p>
+  This page explains how to delete your family's Tori account and all of the data stored with it.
+  There are two ways, and both delete the same data.
+</p>
+
+<h2>The first way — from inside the app</h2>
+<div class="card">
+  <ol style="margin:0">
+    <li>Open Tori on the parent side</li>
+    <li>Settings → <strong>Advanced</strong></li>
+    <li>Tap <strong>Delete account and data</strong></li>
+    <li>Confirm</li>
+  </ol>
 </div>
-</body>
-</html>
+<p>The deletion happens immediately. There is no need to contact us and no waiting period.</p>
+
+<h2>The second way — a request by email</h2>
+<p>
+  If you no longer have access to the app — for example after the device was lost or the app was
+  removed — you can send us a request, and we will delete the data manually.
+</p>
+<a class="btn" href="mailto:${MAIL}?subject=${SUBJ}">
+  Send a deletion request by email
+</a>
+<p style="margin-top:14px">
+  So that we can locate the family, please include the <strong>family name as set in the app</strong> and
+  the approximate date it was installed. We handle requests within <strong>30 days</strong> and confirm by
+  return email.
+</p>
+
+<h2>What gets deleted</h2>
+<table>
+  <tr><th>What</th><th>When</th></tr>
+  <tr><td>The family document on the server — children, chores, habits, points, rewards, calendar events</td><td>Immediately</td></tr>
+  <tr><td>Chore proof photos uploaded to the server</td><td>Immediately</td></tr>
+  <tr><td>The record of paired devices and any active pairing codes</td><td>Immediately</td></tr>
+  <tr><td>All data stored on the device itself</td><td>Immediately (when deleting from the app)</td></tr>
+  <tr><td>Anonymous operational counters — requests per day, with no content</td><td>Within 48 hours</td></tr>
+</table>
+
+<div class="card note">
+  <strong>Deletion is final.</strong> There is no backup and no way to restore. If the family wants to
+  come back to Tori later, it starts from scratch.
+</div>
+
+<h2>What this does not delete</h2>
+<ul>
+  <li><strong>An active store subscription.</strong> Deleting the account with us does not cancel the
+      subscription and does not entitle you to a refund. Cancel it in the store you bought it from:
+      <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">App Store subscriptions</a>
+      or
+      <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener">Google Play subscriptions</a>.
+      It is worth cancelling <strong>before</strong> deleting.</li>
+  <li><strong>Data held by external providers</strong> that process AI requests, subject to their own
+      retention policies. Conversation content is never stored on our server in the first place — see the
+      <a href="./privacy.html">privacy policy</a>, section 2.4.</li>
+</ul>
+
+<h2>Questions</h2>
+<p><a href="mailto:${MAIL}">${MAIL}</a></p>
+
+<footer>
+  Tori · <a href="./privacy.html">Privacy policy</a> · <a href="./index.html">Home</a>
+</footer>`,
+  },
+};
