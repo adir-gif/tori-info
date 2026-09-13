@@ -55,6 +55,18 @@
   a.row strong{color:var(--ice);display:block;font-size:17px}
   a.row span{color:var(--muted);font-size:15px}
 </style>
+<script>
+(function () {
+  try {
+    var files = {"index":"index.html","privacy":"privacy.html","deleteAccount":"delete-account.html"};
+    var langs = ["en","he","es","fr","ar"];
+    var want = (navigator.languages || [navigator.language || ''])[0].slice(0, 2).toLowerCase();
+    if (want && want !== "en" && langs.indexOf(want) !== -1) {
+      location.replace('./' + want + '/' + files["deleteAccount"]);
+    }
+  } catch (e) { /* דף משפטי לא נופל בגלל הפניה */ }
+})();
+</script>
 </head>
 <body>
 <div class="wrap">

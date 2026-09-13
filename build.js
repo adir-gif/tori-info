@@ -111,6 +111,39 @@ function langBar(lang, page, atRoot) {
   return `<nav class="langs">\n    ${links}\n  </nav>`;
 }
 
+/**
+ * ‼️ **הפניה לפי שפת הדפדפן — בדפי השורש בלבד.**
+ *
+ * ═══════════════════════════════════════════════════════════════════════════
+ * **הבעיה שזה פותר קיימת דווקא בגלל התיקון הקודם.** כל בילד שכבר בידי
+ * משתמשים — ‏iOS build 9 ומה שבפליי — מקשר ל-`/privacy.html` בשורש, כי
+ * `src/legal.ts` התחיל לשאת שפה רק היום. ומאז שהשורש הוא **אנגלית**, הורה
+ * ישראלי שלוחץ "מדיניות פרטיות" באפליקציה שמותקנת אצלו עכשיו נוחת בדף
+ * אנגלי. זו רגרסיה חיה, והיא לא תיפתר עד שבילד חדש יגיע לכל המכשירים.
+ *
+ * ⚠️ **`location.replace` ולא `href`** — כדי שכפתור "אחורה" יחזיר את
+ * המשתמש לאפליקציה ולא ללולאה של הפניה חוזרת.
+ *
+ * ⚠️ **אין סכנת לולאה:** בורר השפה מקשר תמיד ל-`<lang>/` מפורש, והסקריפט
+ * הזה קיים **רק בשורש**. מי שבחר ידנית שפה לא ייחטף ממנה.
+ *
+ * ⚠️ **וגם בלי JavaScript הדף תקין** — הוא פשוט נשאר אנגלית, שהיא שפת
+ * הבסיס. בוט ביקורת שאינו מריץ סקריפטים רואה מסמך שלם ותקף.
+ */
+const ROOT_REDIRECT = (page) => `
+<script>
+(function () {
+  try {
+    var files = ${JSON.stringify(FILE)};
+    var langs = ${JSON.stringify(LANGS)};
+    var want = (navigator.languages || [navigator.language || ''])[0].slice(0, 2).toLowerCase();
+    if (want && want !== ${JSON.stringify(ROOT_LANG)} && langs.indexOf(want) !== -1) {
+      location.replace('./' + want + '/' + files[${JSON.stringify(page)}]);
+    }
+  } catch (e) { /* דף משפטי לא נופל בגלל הפניה */ }
+})();
+</script>`;
+
 function render(lang, page, atRoot) {
   const c = require(`./content/${lang}.js`)[page];
   return `<!doctype html>
@@ -123,7 +156,7 @@ function render(lang, page, atRoot) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${c.title}</title>
-<style>${STYLE}</style>
+<style>${STYLE}</style>${atRoot ? ROOT_REDIRECT(page) : ''}
 </head>
 <body>
 <div class="wrap">
