@@ -176,7 +176,7 @@ module.exports = {
   un numéro de téléphone, une adresse IP comme enregistrement permanent, ou tout identifiant publicitaire.
 </p>
 
-<h3>2.8 · « Trouver le téléphone » — la localisation du téléphone de l’enfant</h3>
+<h3>2.8 · « Retrouver le téléphone » — la localisation du téléphone de l’enfant</h3>
 <p>
   Un parent peut demander à faire sonner le téléphone d’un enfant relié à la famille, ou voir où se trouve
   ce téléphone en ce moment. Cette fonction est <strong>désactivée tant qu’un parent ne l’active pas sur le
@@ -185,7 +185,7 @@ module.exports = {
 </p>
 <ul>
   <li><strong>Quand elle est collectée :</strong> <strong>uniquement lorsqu’un parent de la même famille
-      appuie sur « Où est le téléphone ? »</strong>. Pour que cela fonctionne même lorsque l’application est
+      appuie sur « Localiser »</strong>. Pour que cela fonctionne même lorsque l’application est
       fermée, l’autorisation est « Toujours » — mais l’application <strong>ne suit pas l’appareil en
       arrière-plan</strong> et ne mesure pas la position d’elle-même. Sans demande d’un parent, aucune
       mesure.</li>
@@ -207,7 +207,7 @@ module.exports = {
 
 <h3>2.9 · Jeton de notification</h3>
 <p>
-  Sur le téléphone d’un enfant où « Trouver le téléphone » a été activé, un <strong>jeton de
+  Sur le téléphone d’un enfant où « Retrouver le téléphone » a été activé, un <strong>jeton de
   notification</strong> est conservé sur le serveur — un identifiant fourni par le système d’exploitation
   pour permettre d’envoyer une notification à ce téléphone. Il sert <strong>uniquement</strong> à
   transmettre la demande du parent (sonnerie ou localisation), et il n’est lisible par aucun appareil — pas
@@ -238,7 +238,7 @@ module.exports = {
   <li>Un enfant ne crée pas de compte et ne fournit pas de coordonnées. Il entre avec un code de liaison
       temporaire ou un code PIN à 4 chiffres défini par le parent.</li>
   <li>Les seules informations concernant l’enfant sont celles saisies par le parent : un prénom ou surnom, un
-      âge et une photo de profil facultative — et, si le parent a activé « Trouver le téléphone », la
+      âge et une photo de profil facultative — et, si le parent a activé « Retrouver le téléphone », la
       dernière position de son téléphone (section 2.8).</li>
   <li>L’application ne comporte ni discussion libre entre enfants, ni lien vers des réseaux sociaux, ni
       contenu externe.</li>
@@ -391,7 +391,7 @@ module.exports = {
   <tr><td>Le document familial sur le serveur — enfants, tâches, habitudes, points, récompenses, événements</td><td>Immédiatement</td></tr>
   <tr><td>Les photos de preuve de tâches envoyées au serveur</td><td>Immédiatement</td></tr>
   <tr><td>Le registre des appareils reliés et les codes de liaison actifs</td><td>Immédiatement</td></tr>
-  <tr><td>La dernière position des téléphones des enfants et les jetons de notification (« Trouver le téléphone »)</td><td>Immédiatement</td></tr>
+  <tr><td>La dernière position des téléphones des enfants et les jetons de notification (« Retrouver le téléphone »)</td><td>Immédiatement</td></tr>
   <tr><td>Toutes les données conservées sur l’appareil lui-même</td><td>Immédiatement (en supprimant depuis l’application)</td></tr>
   <tr><td>Compteurs opérationnels anonymes — requêtes par jour, sans contenu</td><td>Sous 48 heures</td></tr>
 </table>

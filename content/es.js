@@ -186,8 +186,7 @@ module.exports = {
   ubicación. Sin esa autorización no se recopila ninguna ubicación.
 </p>
 <ul>
-  <li><strong>Cuándo se recopila:</strong> <strong>solo cuando un padre de la misma familia pulsa "¿Dónde está
-      el teléfono?"</strong>. Para que funcione también con la app cerrada, el permiso es "Siempre", pero la
+  <li><strong>Cuándo se recopila:</strong> <strong>solo cuando un padre de la misma familia pulsa "Localizar"</strong>. Para que funcione también con la app cerrada, el permiso es "Siempre", pero la
       app <strong>no hace seguimiento en segundo plano</strong> ni mide la ubicación por su cuenta. Si ningún
       padre lo pide, no se mide nada.</li>
   <li><strong>Qué se recopila:</strong> latitud y longitud precisas, el margen de precisión en metros y el
