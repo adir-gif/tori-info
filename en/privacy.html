@@ -69,7 +69,7 @@
 
 <header>
   <h1>Tori privacy policy</h1>
-  <p class="sub">Last updated: 13 September 2026 · version 1.2</p>
+  <p class="sub">Last updated: 28 September 2026 · version 1.3</p>
 </header>
 
 <p>
@@ -140,14 +140,14 @@
   Pingo is an AI-based assistant. When a child or a parent writes to him:
 </p>
 <ul>
-  <li>The text is sent <strong>through our server</strong> to <strong>Anthropic</strong>, which runs the
-      model <code>claude-haiku-4-5</code>, and a reply comes back.</li>
+  <li>The text is sent <strong>through our server</strong> to <strong>OpenAI</strong>, which runs the
+      language model, and a reply comes back.</li>
   <li><strong>So that Pingo can answer usefully, the family's state is sent with it</strong> — the
       children's names or nicknames, their ages, the chores, the habits and the point balances.
       Without this he cannot answer "what do I have left today". <strong>What is not sent:</strong>
       profile pictures, contact details, or any device identifier.</li>
   <li>In homework help the child can <strong>photograph an exercise</strong>. The photo is sent along the
-      same path to Anthropic in order to analyse the exercise, and is
+      same path to OpenAI in order to analyse the exercise, and is
       <strong>not stored either by us or in the app</strong>.</li>
   <li>Our server <strong>does not store the content of conversations</strong>. It counts requests only
       (see 2.6).</li>
@@ -155,10 +155,11 @@
       deleted with the app.</li>
 </ul>
 <p class="muted">
-  Anthropic processes the requests in order to produce the reply. Under its commercial API terms,
-  input sent through the API is not used to train models by default.
-  Anthropic's privacy policy:
-  <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy</a>.
+  OpenAI processes the requests in order to produce the reply. Under its commercial API terms,
+  input sent through the API is not used to train models by default, and may be retained by OpenAI
+  for a limited time solely to monitor for abuse.
+  OpenAI's privacy policy:
+  <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">openai.com/policies/privacy-policy</a>.
 </p>
 
 <div class="card">
@@ -206,12 +207,50 @@
   IP address as a permanent record, or any advertising identifier.
 </p>
 
+<h3>2.8 · "Find the phone" — the location of a child's phone</h3>
+<p>
+  A parent can ring the phone of a child who has been paired to the family, or see where that phone is
+  right now. The feature is <strong>off until a parent turns it on, on the child's phone itself</strong>:
+  an explanation screen appears, and then the operating system asks for location permission. Without
+  that approval, no location is collected.
+</p>
+<ul>
+  <li><strong>When it is collected:</strong> <strong>only when a parent in the same family taps "Where is
+      the phone?"</strong>. So that this works even when the app is closed, the permission is "Always" —
+      but the app <strong>does not track in the background</strong> and never takes a location reading on
+      its own. No request from a parent, no reading.</li>
+  <li><strong>What is collected:</strong> precise latitude and longitude, the accuracy in metres, and when
+      the reading was taken.</li>
+  <li><strong>What is stored:</strong> <strong>the latest location only</strong> — one row per phone,
+      overwritten on every new request. <strong>No history and no route</strong>.</li>
+  <li><strong>Who can see it:</strong> only the devices of <strong>parents in the same family</strong>. This is
+      enforced by permission rules in the database, not only in the app. The location is not sent to anyone
+      else, is not used for advertising, and is not shared with any third party.</li>
+  <li><strong>How to turn it off:</strong> at any time, in the child's phone settings → Tori → Location →
+      "Never".</li>
+</ul>
+<p>
+  Ringing the phone collects no information: it is a notification that reaches the child's phone and
+  plays a sound or vibrates.
+</p>
+
+<h3>2.9 · Notification token</h3>
+<p>
+  For a child's phone on which "Find the phone" has been turned on, the server stores a
+  <strong>notification token</strong> — an identifier the operating system issues so that messages can be
+  sent to that phone. It is used <strong>only</strong> to deliver the parent's request (ring or locate),
+  and it cannot be read by any device — not even by the parents. Notifications travel through
+  <strong>Expo</strong>'s notification service, and from there through <strong>Google's Firebase Cloud
+  Messaging</strong> (Android) or the <strong>Apple Push Notification service</strong> (iOS). The
+  notification itself contains no location, names or family content.
+</p>
+
 <h2>3 · What is <u>not</u> collected</h2>
 <table>
   <tr><th>Category</th><th>How it stands in Tori</th></tr>
   <tr><td>Ads and ad networks</td><td>None. The app shows no advertising at all.</td></tr>
   <tr><td>Analytics and tracking tools</td><td>None. No usage-analysis or tracking SDK is installed.</td></tr>
-  <tr><td>Geographic location</td><td>Not collected and not requested.</td></tr>
+  <tr><td>Continuous location tracking or location history</td><td>None. Location is read only when a parent asks, and only the latest one is stored (section 2.8).</td></tr>
   <tr><td>Contacts, device calendar, full gallery</td><td>Not accessible. Only a photo picked explicitly.</td></tr>
   <tr><td>A child's email / password / phone</td><td>Do not exist. A child has no account.</td></tr>
   <tr><td>Selling data to third parties</td><td>Does not happen, in any form.</td></tr>
@@ -227,7 +266,8 @@
   <li>A child does not create an account and does not provide contact details. They sign in with a
       temporary pairing code or a 4-digit PIN the parent sets.</li>
   <li>The only information about the child is what the parent entered: a name or nickname, an age, and
-      an optional profile picture.</li>
+      an optional profile picture — and, if the parent turned on "Find the phone", the latest location of
+      the child's phone (section 2.8).</li>
   <li>There is no free chat between children in the app, no link to social networks and no external content.</li>
   <li>The parent can turn the smart helper off for children at any moment, and delete all of the data.</li>
 </ul>
@@ -244,8 +284,9 @@
   row-level permission rules that limit each family to its own data only.
 </p>
 <p>
-  Requests to Pingo are processed by <strong>Anthropic</strong>, which may process them outside the
-  European Union, including in the United States.
+  Requests to Pingo are processed by <strong>OpenAI</strong>, which may process them outside the
+  European Union, including in the United States. The same applies to the notification services (Expo,
+  Google, Apple) and to subscription management (RevenueCat).
 </p>
 
 <h2>6 · How long it is kept</h2>
@@ -256,6 +297,11 @@
   <li><strong>Pairing codes</strong> — expire automatically after 15 minutes.</li>
   <li><strong>Operational counters</strong> — deleted automatically within 48 hours.</li>
   <li><strong>Conversation content</strong> — never stored on the server in the first place.</li>
+  <li><strong>The location of a child's phone</strong> (section 2.8) — the latest one only, overwritten on
+      every request, and deleted when the account is deleted. A phone that is unpaired from the family
+      stops appearing for the parents.</li>
+  <li><strong>Notification token</strong> (section 2.9) — until the operating system revokes it, or until
+      the account is deleted.</li>
   <li><strong>The free-week record</strong> (section 2.7) — <strong>kept indefinitely</strong>. That is its
       entire purpose: a record deleted after a year means another free week for whoever waited. It
       contains a hashed fingerprint and a date only, and does not identify a person.</li>
@@ -265,7 +311,8 @@
 <div class="card">
   <p style="margin-top:0"><strong>From inside the app:</strong>
     Settings → Advanced → <em>Delete account and data</em>.
-    The action deletes the family document, the proof photos and the device records from the server,
+    The action deletes the family document, the proof photos, the device records, the latest location
+    and the notification tokens from the server,
     and resets the device. There is no way to restore it.</p>
   <p><strong>What is not deleted:</strong> the free-week record (section 2.7). It is not part of the
     account and is not linked to it — it is a hashed device fingerprint and a date, and deleting it
@@ -292,6 +339,15 @@
   credit card, bank account or any other financial detail. All we receive from the store is whether an
   active subscription exists.
 </p>
+<p>
+  Subscriptions are managed for us by <strong>RevenueCat</strong>. It receives an <strong>anonymous family
+  identifier</strong> and the purchase details from the store — not names or content. If a
+  <strong>promo code</strong> was entered on the subscription screen, the code is stored with RevenueCat
+  alongside that identifier, so that it can determine which price to show and which code the subscription
+  came from.
+  RevenueCat's privacy policy:
+  <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.
+</p>
 
 <h2>10 · Security</h2>
 <p>
@@ -313,7 +369,7 @@
 </p>
 
 <footer>
-  Tori · Privacy policy · version 1.2 · 13 September 2026
+  Tori · Privacy policy · version 1.3 · 28 September 2026
 </footer>
 
 </div>

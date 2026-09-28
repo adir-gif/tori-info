@@ -34,7 +34,7 @@ module.exports = {
   privacy: {
     title: 'Politique de confidentialité · Tori',
     h1: 'Politique de confidentialité de Tori',
-    sub: 'Dernière mise à jour : 13 septembre 2026 · version 1.2',
+    sub: 'Dernière mise à jour : 28 septembre 2026 · version 1.3',
     body: `
 <p>
   Tori est une application de tâches, d’habitudes et de récompenses pour les familles. Ce document
@@ -106,14 +106,14 @@ module.exports = {
   Pingo est un assistant fondé sur l’intelligence artificielle. Lorsqu’un enfant ou un parent lui écrit :
 </p>
 <ul>
-  <li>Le texte est envoyé <strong>via notre serveur</strong> à <strong>Anthropic</strong>, qui exploite le
-      modèle <code>claude-haiku-4-5</code>, et une réponse revient.</li>
+  <li>Le texte est envoyé <strong>via notre serveur</strong> à <strong>OpenAI</strong>, qui exploite le
+      modèle de langage, et une réponse revient.</li>
   <li><strong>Pour que Pingo puisse répondre utilement, l’état de la famille est envoyé avec</strong> : les
       prénoms ou surnoms des enfants, les âges, les tâches, les habitudes et les soldes de points. Sans cela,
       il ne peut pas répondre à « qu’est-ce qu’il me reste aujourd’hui ». <strong>Ne sont pas envoyés</strong>
       les photos de profil, les coordonnées, ni aucun identifiant d’appareil.</li>
   <li>Dans l’aide aux devoirs, l’enfant peut <strong>photographier un exercice</strong>. La photo est envoyée
-      par le même chemin à Anthropic afin d’analyser l’exercice, et <strong>n’est conservée ni chez nous ni
+      par le même chemin à OpenAI afin d’analyser l’exercice, et <strong>n’est conservée ni chez nous ni
       dans l’application</strong>.</li>
   <li>Notre serveur <strong>ne conserve pas le contenu des conversations</strong>. Il compte uniquement les
       requêtes (voir 2.6).</li>
@@ -121,10 +121,11 @@ module.exports = {
       et il est supprimé avec l’application.</li>
 </ul>
 <p class="muted">
-  Anthropic traite les requêtes afin de produire la réponse. Selon ses conditions d’API commerciales, les
-  données envoyées via l’API ne sont pas utilisées par défaut pour entraîner des modèles.
-  Politique de confidentialité d’Anthropic :
-  <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy</a>.
+  OpenAI traite les requêtes afin de produire la réponse. Selon ses conditions d’API commerciales, les
+  données envoyées via l’API ne sont pas utilisées par défaut pour entraîner des modèles, et peuvent être
+  conservées chez elle pendant une durée limitée, uniquement pour la surveillance des abus.
+  Politique de confidentialité d’OpenAI :
+  <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">openai.com/policies/privacy-policy</a>.
 </p>
 
 <div class="card">
@@ -175,12 +176,53 @@ module.exports = {
   un numéro de téléphone, une adresse IP comme enregistrement permanent, ou tout identifiant publicitaire.
 </p>
 
+<h3>2.8 · « Trouver le téléphone » — la localisation du téléphone de l’enfant</h3>
+<p>
+  Un parent peut demander à faire sonner le téléphone d’un enfant relié à la famille, ou voir où se trouve
+  ce téléphone en ce moment. Cette fonction est <strong>désactivée tant qu’un parent ne l’active pas sur le
+  téléphone de l’enfant lui-même</strong> : un écran d’explication s’affiche, puis le système d’exploitation
+  demande l’autorisation de localisation. Sans cet accord, aucune localisation n’est collectée.
+</p>
+<ul>
+  <li><strong>Quand elle est collectée :</strong> <strong>uniquement lorsqu’un parent de la même famille
+      appuie sur « Où est le téléphone ? »</strong>. Pour que cela fonctionne même lorsque l’application est
+      fermée, l’autorisation est « Toujours » — mais l’application <strong>ne suit pas l’appareil en
+      arrière-plan</strong> et ne mesure pas la position d’elle-même. Sans demande d’un parent, aucune
+      mesure.</li>
+  <li><strong>Ce qui est collecté :</strong> la latitude et la longitude précises, la précision en mètres et
+      l’heure de la mesure.</li>
+  <li><strong>Ce qui est conservé :</strong> <strong>la dernière position uniquement</strong> — une ligne par
+      téléphone, écrasée à chaque nouvelle demande. <strong>Ni historique, ni trajet</strong>.</li>
+  <li><strong>Qui la voit :</strong> uniquement les appareils des <strong>parents de la même famille</strong>.
+      Cela est imposé par les règles d’autorisation de la base de données, et pas seulement dans
+      l’application. La position n’est envoyée à personne d’autre, ne sert pas à la publicité et n’est
+      partagée avec aucun tiers.</li>
+  <li><strong>Comment la désactiver :</strong> à tout moment, dans les réglages du téléphone de l’enfant →
+      Tori → Localisation → « Jamais ».</li>
+</ul>
+<p>
+  La sonnerie elle-même ne collecte aucune donnée : c’est une notification qui arrive sur le téléphone de
+  l’enfant et joue un son ou une vibration.
+</p>
+
+<h3>2.9 · Jeton de notification</h3>
+<p>
+  Sur le téléphone d’un enfant où « Trouver le téléphone » a été activé, un <strong>jeton de
+  notification</strong> est conservé sur le serveur — un identifiant fourni par le système d’exploitation
+  pour permettre d’envoyer une notification à ce téléphone. Il sert <strong>uniquement</strong> à
+  transmettre la demande du parent (sonnerie ou localisation), et il n’est lisible par aucun appareil — pas
+  même ceux des parents. Les notifications passent par le service de notifications d’<strong>Expo</strong>,
+  puis par <strong>Firebase Cloud Messaging de Google</strong> (Android) ou par l’<strong>Apple Push
+  Notification Service</strong> (iOS). La notification elle-même ne contient ni position, ni prénoms, ni
+  contenu de la famille.
+</p>
+
 <h2>3 · Ce qui n’est <u>pas</u> collecté</h2>
 <table>
   <tr><th>Catégorie</th><th>Où en est Tori</th></tr>
   <tr><td>Publicité et régies publicitaires</td><td>Aucune. L’application n’affiche pas de publicité.</td></tr>
   <tr><td>Outils d’analyse et de suivi</td><td>Aucun. Aucun SDK d’analyse d’usage ou de suivi n’est installé.</td></tr>
-  <tr><td>Localisation géographique</td><td>Non collectée et non demandée.</td></tr>
+  <tr><td>Suivi de localisation continu ou historique des positions</td><td>Aucun. La position n’est mesurée qu’à la demande d’un parent, et seule la dernière est conservée (section 2.8).</td></tr>
   <tr><td>Contacts, agenda de l’appareil, galerie complète</td><td>Non accessibles. Uniquement une photo choisie explicitement.</td></tr>
   <tr><td>E-mail / mot de passe / téléphone d’un enfant</td><td>N’existent pas. Un enfant n’a pas de compte.</td></tr>
   <tr><td>Vente de données à des tiers</td><td>N’a pas lieu, sous aucune forme.</td></tr>
@@ -196,7 +238,8 @@ module.exports = {
   <li>Un enfant ne crée pas de compte et ne fournit pas de coordonnées. Il entre avec un code de liaison
       temporaire ou un code PIN à 4 chiffres défini par le parent.</li>
   <li>Les seules informations concernant l’enfant sont celles saisies par le parent : un prénom ou surnom, un
-      âge et une photo de profil facultative.</li>
+      âge et une photo de profil facultative — et, si le parent a activé « Trouver le téléphone », la
+      dernière position de son téléphone (section 2.8).</li>
   <li>L’application ne comporte ni discussion libre entre enfants, ni lien vers des réseaux sociaux, ni
       contenu externe.</li>
   <li>Le parent peut désactiver l’assistant intelligent pour les enfants à tout moment, et supprimer toutes
@@ -216,8 +259,9 @@ module.exports = {
   famille à ses seules données.
 </p>
 <p>
-  Les requêtes adressées à Pingo sont traitées par <strong>Anthropic</strong>, qui peut les traiter en dehors
-  de l’Union européenne, y compris aux États-Unis.
+  Les requêtes adressées à Pingo sont traitées par <strong>OpenAI</strong>, qui peut les traiter en dehors
+  de l’Union européenne, y compris aux États-Unis. Il en va de même pour les services de notification
+  (Expo, Google, Apple) et la gestion des abonnements (RevenueCat).
 </p>
 
 <h2>6 · Durée de conservation</h2>
@@ -228,6 +272,11 @@ module.exports = {
   <li><strong>Codes de liaison</strong> — expirent automatiquement au bout de 15 minutes.</li>
   <li><strong>Compteurs opérationnels</strong> — supprimés automatiquement sous 48 heures.</li>
   <li><strong>Contenu des conversations</strong> — jamais conservé sur le serveur.</li>
+  <li><strong>Position du téléphone de l’enfant</strong> (section 2.8) — uniquement la dernière, écrasée à
+      chaque demande, et supprimée avec le compte. Un téléphone détaché de la famille cesse d’apparaître
+      chez les parents.</li>
+  <li><strong>Jeton de notification</strong> (section 2.9) — jusqu’à ce que le système d’exploitation le
+      révoque, ou jusqu’à la suppression du compte.</li>
   <li><strong>Enregistrement de la semaine gratuite</strong> (section 2.7) — <strong>conservé sans limite de
       durée</strong>. C’est toute sa raison d’être : un enregistrement supprimé au bout d’un an signifie une
       semaine gratuite de plus pour qui a attendu. Il ne contient qu’une empreinte chiffrée et une date, et
@@ -238,8 +287,8 @@ module.exports = {
 <div class="card">
   <p style="margin-top:0"><strong>Depuis l’application :</strong>
     Réglages → Avancé → <em>Supprimer le compte et les données</em>.
-    L’action supprime du serveur le document familial, les photos de preuve et le registre des appareils, et
-    réinitialise l’appareil. Il n’y a aucun moyen de revenir en arrière.</p>
+    L’action supprime du serveur le document familial, les photos de preuve, le registre des appareils, la
+    dernière position et les jetons de notification, et réinitialise l’appareil. Il n’y a aucun moyen de revenir en arrière.</p>
   <p><strong>Ce qui n’est pas supprimé :</strong> l’enregistrement de la semaine gratuite (section 2.7). Il ne
     fait pas partie du compte et ne lui est pas lié — c’est une empreinte chiffrée de l’appareil et une date,
     et le supprimer annulerait en pratique l’essai unique. Sa conservation repose sur un intérêt légitime à
@@ -266,6 +315,15 @@ module.exports = {
   conservons aucune donnée de paiement : carte bancaire, compte bancaire ou toute autre information
   financière. La boutique nous indique uniquement s’il existe un abonnement actif.
 </p>
+<p>
+  Les abonnements sont gérés pour notre compte par <strong>RevenueCat</strong>. Il reçoit un
+  <strong>identifiant anonyme de la famille</strong> et les détails de l’achat transmis par la boutique, mais
+  ni prénoms ni contenu. Si un <strong>code promotionnel</strong> a été saisi sur l’écran d’abonnement, ce
+  code est conservé chez lui avec ce même identifiant, afin de déterminer quel prix afficher et de savoir de
+  quel code provient l’abonnement.
+  Politique de confidentialité de RevenueCat :
+  <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.
+</p>
 
 <h2>10 · Sécurité</h2>
 <p>
@@ -288,7 +346,7 @@ module.exports = {
 </p>
 
 <footer>
-  Tori · Politique de confidentialité · version 1.2 · 13 septembre 2026
+  Tori · Politique de confidentialité · version 1.3 · 28 septembre 2026
 </footer>`,
   },
 
@@ -333,6 +391,7 @@ module.exports = {
   <tr><td>Le document familial sur le serveur — enfants, tâches, habitudes, points, récompenses, événements</td><td>Immédiatement</td></tr>
   <tr><td>Les photos de preuve de tâches envoyées au serveur</td><td>Immédiatement</td></tr>
   <tr><td>Le registre des appareils reliés et les codes de liaison actifs</td><td>Immédiatement</td></tr>
+  <tr><td>La dernière position des téléphones des enfants et les jetons de notification (« Trouver le téléphone »)</td><td>Immédiatement</td></tr>
   <tr><td>Toutes les données conservées sur l’appareil lui-même</td><td>Immédiatement (en supprimant depuis l’application)</td></tr>
   <tr><td>Compteurs opérationnels anonymes — requêtes par jour, sans contenu</td><td>Sous 48 heures</td></tr>
 </table>
