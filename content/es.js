@@ -350,10 +350,26 @@ module.exports = {
 
 <h2>11 · Cambios en esta política</h2>
 <p>
-  Si cambiamos la política, actualizaremos la fecha al inicio de la página. Un cambio sustancial —por
-  ejemplo, una nueva categoría de datos o un nuevo proveedor— se mostrará además dentro de la app antes de
-  entrar en vigor.
+  Cuando cambiemos la política, actualizaremos el número de versión y la fecha al inicio de la página, y
+  añadiremos a la lista de abajo lo que cambió. Conviene volver a esta página de vez en cuando; el enlace
+  también está en los Ajustes de la app.
 </p>
+<p>
+  Una función que usa la ubicación explica dentro de la app qué se recopila, cuándo y quién lo ve,
+  <strong>antes</strong> de que el sistema operativo pida el permiso. Sin ese permiso no se recopila ninguna
+  ubicación, ni siquiera después de una actualización de la política.
+</p>
+<p><strong>Qué cambió en cada versión:</strong></p>
+<ul>
+  <li><strong>1.4 · 3 de octubre de 2026</strong>: "Encontrar el teléfono" también para el teléfono de un
+      adulto (2.8); foto de una receta en la lista de la compra (2.4); token de notificaciones en cada
+      teléfono vinculado (2.9); esta sección.</li>
+  <li><strong>1.3 · 28 de septiembre de 2026</strong>: "Encontrar el teléfono" para el teléfono de un niño
+      (2.8) y el token de notificaciones (2.9); el proveedor de IA es OpenAI (2.4); las suscripciones se
+      gestionan con RevenueCat (9).</li>
+  <li><strong>1.2 · 13 de septiembre de 2026</strong>: la política está disponible en cinco idiomas.</li>
+  <li><strong>1.1 · 19 de agosto de 2026</strong>: el registro de la semana gratis (2.7).</li>
+</ul>
 
 <h2>12 · Contacto</h2>
 <p>
