@@ -69,7 +69,7 @@
 
 <header>
   <h1>Tori privacy policy</h1>
-  <p class="sub">Last updated: 28 September 2026 · version 1.3</p>
+  <p class="sub">Last updated: 3 October 2026 · version 1.4</p>
 </header>
 
 <p>
@@ -149,6 +149,11 @@
   <li>In homework help the child can <strong>photograph an exercise</strong>. The photo is sent along the
       same path to OpenAI in order to analyse the exercise, and is
       <strong>not stored either by us or in the app</strong>.</li>
+  <li>In the <strong>shopping list</strong> a parent can ask Pingo to add groceries — by voice, by typing,
+      or with a <strong>photo of a recipe or a list</strong>. The request is sent along the same path to
+      OpenAI, together with the items already on the list so that nothing is added twice. The photo is used
+      only to read the ingredients and is <strong>not stored either by us or in the app</strong>. What is
+      kept is the items added to the list.</li>
   <li>Our server <strong>does not store the content of conversations</strong>. It counts requests only
       (see 2.6).</li>
   <li>Conversation history is kept locally on the device so the conversation can continue, and is
@@ -207,13 +212,28 @@
   IP address as a permanent record, or any advertising identifier.
 </p>
 
-<h3>2.8 · "Find the phone" — the location of a child's phone</h3>
+<h3>2.8 · "Find the phone" — the location of a phone</h3>
 <p>
-  A parent can ring the phone of a child who has been paired to the family, or see where that phone is
-  right now. The feature is <strong>off until a parent turns it on, on the child's phone itself</strong>:
-  an explanation screen appears, and then the operating system asks for location permission. Without
-  that approval, no location is collected.
+  A parent can ring a phone that has been paired to the family, or see where that phone is right now.
+  This works for a child's phone and, from version 1.4, also for another parent's phone in the same
+  family — under different rules:
 </p>
+<div class="card">
+  <p style="margin-top:0"><strong>A child's phone.</strong> The feature is <strong>off until a parent turns
+    it on, on the child's phone itself</strong>: an explanation screen appears, and then the operating
+    system asks for location permission. Without that approval, no location is collected. It can be turned
+    off at any time in the child's phone settings → Tori → Location → "Never".</p>
+  <p style="margin-bottom:0"><strong>A parent's phone.</strong> When a family has more than one parent, a
+    parent can ring another parent's paired phone — this is on by default. <strong>Location is collected
+    only if the phone's owner has allowed it themselves</strong>, on their own phone: Settings → "Find my
+    phone" → an explanation screen → the operating system's location permission. Without that, the phone
+    can only be rung. <strong>Every time their location is sent, the owner gets a notification about
+    it.</strong> Each parent can turn off both ringing and location <strong>only from their own
+    phone</strong>, on the same screen. Turning it off deletes the phone's latest location from the server,
+    and it stays off even if the phone is paired to the family again; no other parent can turn it back on
+    for them.</p>
+</div>
+<p>In both cases:</p>
 <ul>
   <li><strong>When it is collected:</strong> <strong>only when a parent in the same family taps "Locate"</strong>. So that this works even when the app is closed, the permission is "Always" —
       but the app <strong>does not track in the background</strong> and never takes a location reading on
@@ -222,26 +242,24 @@
       the reading was taken.</li>
   <li><strong>What is stored:</strong> <strong>the latest location only</strong> — one row per phone,
       overwritten on every new request. <strong>No history and no route</strong>.</li>
-  <li><strong>Who can see it:</strong> only the devices of <strong>parents in the same family</strong>. This is
+  <li><strong>Who can see it:</strong> only the devices of <strong>parents in the same family</strong>; children's phones cannot see anyone's location. This is
       enforced by permission rules in the database, not only in the app. The location is not sent to anyone
       else, is not used for advertising, and is not shared with any third party.</li>
-  <li><strong>How to turn it off:</strong> at any time, in the child's phone settings → Tori → Location →
-      "Never".</li>
 </ul>
 <p>
-  Ringing the phone collects no information: it is a notification that reaches the child's phone and
-  plays a sound or vibrates.
+  Ringing the phone collects no information: it is a notification that reaches the phone and plays a
+  sound or vibrates.
 </p>
 
 <h3>2.9 · Notification token</h3>
 <p>
-  For a child's phone on which "Find the phone" has been turned on, the server stores a
-  <strong>notification token</strong> — an identifier the operating system issues so that messages can be
-  sent to that phone. It is used <strong>only</strong> to deliver the parent's request (ring or locate),
-  and it cannot be read by any device — not even by the parents. Notifications travel through
-  <strong>Expo</strong>'s notification service, and from there through <strong>Google's Firebase Cloud
-  Messaging</strong> (Android) or the <strong>Apple Push Notification service</strong> (iOS). The
-  notification itself contains no location, names or family content.
+  On every phone that is paired to the family and has allowed Tori to send notifications — a child's or a
+  parent's — the server stores a <strong>notification token</strong>: an identifier the operating system
+  issues so that messages can be sent to that phone. It is used <strong>only</strong> to deliver a "Find the
+  phone" request (ring or locate), and it cannot be read by any device — not even by the parents.
+  Notifications travel through <strong>Expo</strong>'s notification service, and from there through
+  <strong>Google's Firebase Cloud Messaging</strong> (Android) or the <strong>Apple Push Notification
+  service</strong> (iOS). The notification itself contains no location, names or family content.
 </p>
 
 <h2>3 · What is <u>not</u> collected</h2>
@@ -249,7 +267,7 @@
   <tr><th>Category</th><th>How it stands in Tori</th></tr>
   <tr><td>Ads and ad networks</td><td>None. The app shows no advertising at all.</td></tr>
   <tr><td>Analytics and tracking tools</td><td>None. No usage-analysis or tracking SDK is installed.</td></tr>
-  <tr><td>Continuous location tracking or location history</td><td>None. Location is read only when a parent asks, and only the latest one is stored (section 2.8).</td></tr>
+  <tr><td>Continuous location tracking or location history</td><td>None. Location is read only when a parent asks, only on a phone where this was allowed, and only the latest one is stored (section 2.8).</td></tr>
   <tr><td>Contacts, device calendar, full gallery</td><td>Not accessible. Only a photo picked explicitly.</td></tr>
   <tr><td>A child's email / password / phone</td><td>Do not exist. A child has no account.</td></tr>
   <tr><td>Selling data to third parties</td><td>Does not happen, in any form.</td></tr>
@@ -296,9 +314,10 @@
   <li><strong>Pairing codes</strong> — expire automatically after 15 minutes.</li>
   <li><strong>Operational counters</strong> — deleted automatically within 48 hours.</li>
   <li><strong>Conversation content</strong> — never stored on the server in the first place.</li>
-  <li><strong>The location of a child's phone</strong> (section 2.8) — the latest one only, overwritten on
+  <li><strong>The location of a phone</strong> (section 2.8) — the latest one only, overwritten on
       every request, and deleted when the account is deleted. A phone that is unpaired from the family
-      stops appearing for the parents.</li>
+      stops appearing for the parents. When a parent turns off "Find my phone", the latest location of
+      their phone is deleted at that moment.</li>
   <li><strong>Notification token</strong> (section 2.9) — until the operating system revokes it, or until
       the account is deleted.</li>
   <li><strong>The free-week record</strong> (section 2.7) — <strong>kept indefinitely</strong>. That is its
@@ -368,7 +387,7 @@
 </p>
 
 <footer>
-  Tori · Privacy policy · version 1.3 · 28 September 2026
+  Tori · Privacy policy · version 1.4 · 3 October 2026
 </footer>
 
 </div>

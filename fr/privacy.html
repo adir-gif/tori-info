@@ -69,7 +69,7 @@
 
 <header>
   <h1>Politique de confidentialité de Tori</h1>
-  <p class="sub">Dernière mise à jour : 28 septembre 2026 · version 1.3</p>
+  <p class="sub">Dernière mise à jour : 3 octobre 2026 · version 1.4</p>
 </header>
 
 <p>
@@ -151,6 +151,11 @@
   <li>Dans l’aide aux devoirs, l’enfant peut <strong>photographier un exercice</strong>. La photo est envoyée
       par le même chemin à OpenAI afin d’analyser l’exercice, et <strong>n’est conservée ni chez nous ni
       dans l’application</strong>.</li>
+  <li>Dans la <strong>liste de courses</strong>, un parent peut demander à Pingo d’ajouter des articles — à
+      la voix, par écrit, ou avec une <strong>photo d’une recette ou d’une liste</strong>. La demande est
+      envoyée par le même chemin à OpenAI, avec les articles déjà présents sur la liste pour que rien ne soit
+      ajouté deux fois. La photo sert uniquement à lire les ingrédients et <strong>n’est conservée ni chez
+      nous ni dans l’application</strong>. Ce qui est conservé, ce sont les articles ajoutés à la liste.</li>
   <li>Notre serveur <strong>ne conserve pas le contenu des conversations</strong>. Il compte uniquement les
       requêtes (voir 2.6).</li>
   <li>L’historique de la conversation est conservé localement sur l’appareil pour que l’échange se poursuive,
@@ -212,13 +217,30 @@
   un numéro de téléphone, une adresse IP comme enregistrement permanent, ou tout identifiant publicitaire.
 </p>
 
-<h3>2.8 · « Retrouver le téléphone » — la localisation du téléphone de l’enfant</h3>
+<h3>2.8 · « Retrouver le téléphone » — la localisation d’un téléphone</h3>
 <p>
-  Un parent peut demander à faire sonner le téléphone d’un enfant relié à la famille, ou voir où se trouve
-  ce téléphone en ce moment. Cette fonction est <strong>désactivée tant qu’un parent ne l’active pas sur le
-  téléphone de l’enfant lui-même</strong> : un écran d’explication s’affiche, puis le système d’exploitation
-  demande l’autorisation de localisation. Sans cet accord, aucune localisation n’est collectée.
+  Un parent peut demander à faire sonner un téléphone relié à la famille, ou voir où se trouve ce téléphone
+  en ce moment. Cela fonctionne pour le téléphone d’un enfant et, depuis la version 1.4, aussi pour le
+  téléphone d’un autre parent de la même famille — avec des règles différentes :
 </p>
+<div class="card">
+  <p style="margin-top:0"><strong>Le téléphone d’un enfant.</strong> Cette fonction est <strong>désactivée
+    tant qu’un parent ne l’active pas sur le téléphone de l’enfant lui-même</strong> : un écran d’explication
+    s’affiche, puis le système d’exploitation demande l’autorisation de localisation. Sans cet accord, aucune
+    localisation n’est collectée. On peut la désactiver à tout moment dans les réglages du téléphone de
+    l’enfant → Tori → Localisation → « Jamais ».</p>
+  <p style="margin-bottom:0"><strong>Le téléphone d’un parent.</strong> Quand la famille compte plus d’un
+    parent, chacun peut faire sonner le téléphone relié de l’autre ; c’est activé par défaut. <strong>La
+    position n’est collectée que si la personne à qui appartient le téléphone l’a autorisé elle-même</strong>,
+    sur son propre téléphone : Réglages → « Retrouver mon téléphone » → un écran d’explication →
+    l’autorisation de localisation du système d’exploitation. Sans cela, on peut seulement faire sonner le
+    téléphone. <strong>Chaque fois que sa position est envoyée, cette personne en est avertie par une
+    notification.</strong> Chaque parent peut désactiver la sonnerie et la localisation <strong>uniquement
+    depuis son propre téléphone</strong>, sur le même écran. La désactivation supprime du serveur la dernière
+    position du téléphone et reste en vigueur même si le téléphone est relié de nouveau à la famille ; aucun
+    autre parent ne peut la réactiver à sa place.</p>
+</div>
+<p>Dans les deux cas :</p>
 <ul>
   <li><strong>Quand elle est collectée :</strong> <strong>uniquement lorsqu’un parent de la même famille
       appuie sur « Localiser »</strong>. Pour que cela fonctionne même lorsque l’application est
@@ -229,28 +251,26 @@
       l’heure de la mesure.</li>
   <li><strong>Ce qui est conservé :</strong> <strong>la dernière position uniquement</strong> — une ligne par
       téléphone, écrasée à chaque nouvelle demande. <strong>Ni historique, ni trajet</strong>.</li>
-  <li><strong>Qui la voit :</strong> uniquement les appareils des <strong>parents de la même famille</strong>.
+  <li><strong>Qui la voit :</strong> uniquement les appareils des <strong>parents de la même famille</strong> ; les téléphones des enfants ne voient la position de personne.
       Cela est imposé par les règles d’autorisation de la base de données, et pas seulement dans
       l’application. La position n’est envoyée à personne d’autre, ne sert pas à la publicité et n’est
       partagée avec aucun tiers.</li>
-  <li><strong>Comment la désactiver :</strong> à tout moment, dans les réglages du téléphone de l’enfant →
-      Tori → Localisation → « Jamais ».</li>
 </ul>
 <p>
-  La sonnerie elle-même ne collecte aucune donnée : c’est une notification qui arrive sur le téléphone de
-  l’enfant et joue un son ou une vibration.
+  La sonnerie elle-même ne collecte aucune donnée : c’est une notification qui arrive sur le téléphone et
+  joue un son ou une vibration.
 </p>
 
 <h3>2.9 · Jeton de notification</h3>
 <p>
-  Sur le téléphone d’un enfant où « Retrouver le téléphone » a été activé, un <strong>jeton de
-  notification</strong> est conservé sur le serveur — un identifiant fourni par le système d’exploitation
-  pour permettre d’envoyer une notification à ce téléphone. Il sert <strong>uniquement</strong> à
-  transmettre la demande du parent (sonnerie ou localisation), et il n’est lisible par aucun appareil — pas
-  même ceux des parents. Les notifications passent par le service de notifications d’<strong>Expo</strong>,
-  puis par <strong>Firebase Cloud Messaging de Google</strong> (Android) ou par l’<strong>Apple Push
-  Notification Service</strong> (iOS). La notification elle-même ne contient ni position, ni prénoms, ni
-  contenu de la famille.
+  Sur chaque téléphone relié à la famille qui a autorisé Tori à envoyer des notifications — celui d’un
+  enfant ou d’un parent —, un <strong>jeton de notification</strong> est conservé sur le serveur : un
+  identifiant fourni par le système d’exploitation pour permettre d’envoyer une notification à ce
+  téléphone. Il sert <strong>uniquement</strong> à transmettre une demande « Retrouver le téléphone »
+  (sonnerie ou localisation), et il n’est lisible par aucun appareil — pas même ceux des parents. Les
+  notifications passent par le service de notifications d’<strong>Expo</strong>, puis par <strong>Firebase
+  Cloud Messaging de Google</strong> (Android) ou par l’<strong>Apple Push Notification Service</strong>
+  (iOS). La notification elle-même ne contient ni position, ni prénoms, ni contenu de la famille.
 </p>
 
 <h2>3 · Ce qui n’est <u>pas</u> collecté</h2>
@@ -258,7 +278,7 @@
   <tr><th>Catégorie</th><th>Où en est Tori</th></tr>
   <tr><td>Publicité et régies publicitaires</td><td>Aucune. L’application n’affiche pas de publicité.</td></tr>
   <tr><td>Outils d’analyse et de suivi</td><td>Aucun. Aucun SDK d’analyse d’usage ou de suivi n’est installé.</td></tr>
-  <tr><td>Suivi de localisation continu ou historique des positions</td><td>Aucun. La position n’est mesurée qu’à la demande d’un parent, et seule la dernière est conservée (section 2.8).</td></tr>
+  <tr><td>Suivi de localisation continu ou historique des positions</td><td>Aucun. La position n’est mesurée qu’à la demande d’un parent, seulement sur un téléphone où cela a été autorisé, et seule la dernière est conservée (section 2.8).</td></tr>
   <tr><td>Contacts, agenda de l’appareil, galerie complète</td><td>Non accessibles. Uniquement une photo choisie explicitement.</td></tr>
   <tr><td>E-mail / mot de passe / téléphone d’un enfant</td><td>N’existent pas. Un enfant n’a pas de compte.</td></tr>
   <tr><td>Vente de données à des tiers</td><td>N’a pas lieu, sous aucune forme.</td></tr>
@@ -308,9 +328,10 @@
   <li><strong>Codes de liaison</strong> — expirent automatiquement au bout de 15 minutes.</li>
   <li><strong>Compteurs opérationnels</strong> — supprimés automatiquement sous 48 heures.</li>
   <li><strong>Contenu des conversations</strong> — jamais conservé sur le serveur.</li>
-  <li><strong>Position du téléphone de l’enfant</strong> (section 2.8) — uniquement la dernière, écrasée à
+  <li><strong>Position d’un téléphone</strong> (section 2.8) — uniquement la dernière, écrasée à
       chaque demande, et supprimée avec le compte. Un téléphone détaché de la famille cesse d’apparaître
-      chez les parents.</li>
+      chez les parents. Quand un parent désactive « Retrouver mon téléphone », la dernière position de son
+      téléphone est supprimée immédiatement.</li>
   <li><strong>Jeton de notification</strong> (section 2.9) — jusqu’à ce que le système d’exploitation le
       révoque, ou jusqu’à la suppression du compte.</li>
   <li><strong>Enregistrement de la semaine gratuite</strong> (section 2.7) — <strong>conservé sans limite de
@@ -382,7 +403,7 @@
 </p>
 
 <footer>
-  Tori · Politique de confidentialité · version 1.3 · 28 septembre 2026
+  Tori · Politique de confidentialité · version 1.4 · 3 octobre 2026
 </footer>
 
 </div>

@@ -38,7 +38,7 @@ module.exports = {
   privacy: {
     title: 'Política de privacidad · Tori',
     h1: 'Política de privacidad de Tori',
-    sub: 'Última actualización: 28 de septiembre de 2026 · versión 1.3',
+    sub: 'Última actualización: 3 de octubre de 2026 · versión 1.4',
     body: `
 <p>
   Tori es una app de tareas, hábitos y premios para familias. Este documento explica exactamente
@@ -118,6 +118,11 @@ module.exports = {
   <li>En la ayuda con la tarea escolar el niño puede <strong>fotografiar un ejercicio</strong>. La foto se
       envía por la misma ruta a OpenAI para analizar el ejercicio, y
       <strong>no se guarda ni en nuestros servidores ni en la app</strong>.</li>
+  <li>En la <strong>lista de la compra</strong> un padre puede pedirle a Pingo que añada productos: hablando,
+      escribiendo o con una <strong>foto de una receta o de una lista</strong>. La solicitud se envía por la
+      misma ruta a OpenAI, junto con los productos que ya están en la lista para que nada se añada dos veces.
+      La foto solo se usa para leer los ingredientes y <strong>no se guarda ni en nuestros servidores ni en la
+      app</strong>. Lo que se guarda son los productos añadidos a la lista.</li>
   <li>Nuestro servidor <strong>no guarda el contenido de las conversaciones</strong>. Solo cuenta solicitudes
       (ver 2.6).</li>
   <li>El historial de la conversación se guarda localmente en el dispositivo para que la charla continúe,
@@ -178,13 +183,29 @@ module.exports = {
   número de teléfono, una dirección IP como registro permanente, ni ningún identificador publicitario.
 </p>
 
-<h3>2.8 · "Encontrar el teléfono": la ubicación del teléfono del niño</h3>
+<h3>2.8 · "Encontrar el teléfono": la ubicación de un teléfono</h3>
 <p>
-  Un padre puede hacer sonar el teléfono de un hijo vinculado a la familia, o ver dónde está ese teléfono
-  en este momento. La función <strong>está apagada hasta que un padre la activa en el propio teléfono del
-  niño</strong>: aparece una pantalla explicativa y, después, el sistema operativo pide el permiso de
-  ubicación. Sin esa autorización no se recopila ninguna ubicación.
+  Un padre puede hacer sonar un teléfono vinculado a la familia, o ver dónde está ese teléfono en este
+  momento. Funciona con el teléfono de un hijo y, desde la versión 1.4, también con el teléfono de otro
+  padre o madre de la misma familia, con reglas distintas:
 </p>
+<div class="card">
+  <p style="margin-top:0"><strong>El teléfono de un hijo.</strong> La función <strong>está apagada hasta que
+    un padre la activa en el propio teléfono del niño</strong>: aparece una pantalla explicativa y, después,
+    el sistema operativo pide el permiso de ubicación. Sin esa autorización no se recopila ninguna ubicación.
+    Se puede desactivar en cualquier momento en los ajustes del teléfono del niño → Tori → Ubicación →
+    "Nunca".</p>
+  <p style="margin-bottom:0"><strong>El teléfono de un padre o una madre.</strong> Cuando en la familia hay
+    más de un adulto, cada uno puede hacer sonar el teléfono vinculado del otro; esto está activado de forma
+    predeterminada. <strong>La ubicación solo se recopila si quien usa ese teléfono lo ha permitido</strong>,
+    desde su propio teléfono: Ajustes → "Encontrar mi teléfono" → una pantalla explicativa → el permiso de
+    ubicación del sistema operativo. Sin eso, solo se puede hacer sonar. <strong>Cada vez que se envía su
+    ubicación, recibe un aviso.</strong> Cada adulto puede desactivar el sonido y la ubicación <strong>solo
+    desde su propio teléfono</strong>, en la misma pantalla. Al desactivarlo se borra del servidor la última
+    ubicación del teléfono, y sigue desactivado aunque el teléfono se vuelva a vincular a la familia; nadie
+    más puede volver a activarlo en su lugar.</p>
+</div>
+<p>En ambos casos:</p>
 <ul>
   <li><strong>Cuándo se recopila:</strong> <strong>solo cuando un padre de la misma familia pulsa "Localizar"</strong>. Para que funcione también con la app cerrada, el permiso es "Siempre", pero la
       app <strong>no hace seguimiento en segundo plano</strong> ni mide la ubicación por su cuenta. Si ningún
@@ -193,26 +214,25 @@ module.exports = {
       momento de la medición.</li>
   <li><strong>Qué se guarda:</strong> <strong>solo la última ubicación</strong>: una fila por teléfono, que se
       sobrescribe con cada nueva solicitud. <strong>No hay historial ni recorrido</strong>.</li>
-  <li><strong>Quién la ve:</strong> solo los dispositivos de <strong>los padres de la misma familia</strong>.
+  <li><strong>Quién la ve:</strong> solo los dispositivos de <strong>los padres de la misma familia</strong>; los teléfonos de los niños no ven la ubicación de nadie.
       Esto se aplica con reglas de permisos en la base de datos, no solo en la app. La ubicación no se
       envía a nadie más, no se usa para publicidad y no se comparte con terceros.</li>
-  <li><strong>Cómo se desactiva:</strong> en cualquier momento, en los ajustes del teléfono del niño →
-      Tori → Ubicación → "Nunca".</li>
 </ul>
 <p>
-  Hacer sonar el teléfono no recopila ningún dato: es un aviso que llega al teléfono del niño y reproduce
-  un sonido o una vibración.
+  Hacer sonar el teléfono no recopila ningún dato: es un aviso que llega al teléfono y reproduce un sonido
+  o una vibración.
 </p>
 
 <h3>2.9 · Token de notificaciones</h3>
 <p>
-  En el teléfono de un niño donde se activó "Encontrar el teléfono", el servidor guarda un
-  <strong>token de notificaciones</strong>: un identificador que otorga el sistema operativo para poder
-  enviar avisos a ese teléfono. Se usa <strong>únicamente</strong> para transmitir la solicitud del padre
-  (sonido o ubicación), y ningún dispositivo puede leerlo, ni siquiera los de los padres. Los avisos pasan
-  por el servicio de notificaciones de <strong>Expo</strong> y, desde ahí, por
-  <strong>Firebase Cloud Messaging de Google</strong> (Android) o por <strong>Apple Push Notification
-  Service</strong> (iOS). El aviso en sí no contiene la ubicación, nombres ni contenido de la familia.
+  En cada teléfono vinculado a la familia que haya permitido a Tori enviar notificaciones —de un niño o de
+  un adulto—, el servidor guarda un <strong>token de notificaciones</strong>: un identificador que otorga el
+  sistema operativo para poder enviar avisos a ese teléfono. Se usa <strong>únicamente</strong> para
+  transmitir una solicitud de "Encontrar el teléfono" (sonido o ubicación), y ningún dispositivo puede
+  leerlo, ni siquiera los de los padres. Los avisos pasan por el servicio de notificaciones de
+  <strong>Expo</strong> y, desde ahí, por <strong>Firebase Cloud Messaging de Google</strong> (Android) o por
+  <strong>Apple Push Notification Service</strong> (iOS). El aviso en sí no contiene la ubicación, nombres ni
+  contenido de la familia.
 </p>
 
 <h2>3 · Lo que <u>no</u> se recopila</h2>
@@ -220,7 +240,7 @@ module.exports = {
   <tr><th>Categoría</th><th>Cómo está en Tori</th></tr>
   <tr><td>Anuncios y redes publicitarias</td><td>No hay. La app no muestra publicidad en absoluto.</td></tr>
   <tr><td>Herramientas de analítica y rastreo</td><td>No hay. No se instala ningún SDK de análisis de uso ni de rastreo.</td></tr>
-  <tr><td>Seguimiento continuo de la ubicación o historial de ubicaciones</td><td>No hay. La ubicación se mide solo cuando un padre lo pide, y solo se guarda la última (sección 2.8).</td></tr>
+  <tr><td>Seguimiento continuo de la ubicación o historial de ubicaciones</td><td>No hay. La ubicación se mide solo cuando un padre lo pide, solo en un teléfono donde se autorizó, y solo se guarda la última (sección 2.8).</td></tr>
   <tr><td>Contactos, calendario del dispositivo, galería completa</td><td>No accesibles. Solo la foto que se elige de forma explícita.</td></tr>
   <tr><td>Correo / contraseña / teléfono de un niño</td><td>No existen. El niño no tiene cuenta.</td></tr>
   <tr><td>Venta de datos a terceros</td><td>No se realiza, de ninguna forma.</td></tr>
@@ -268,9 +288,10 @@ module.exports = {
   <li><strong>Códigos de vinculación</strong>: caducan automáticamente a los 15 minutos.</li>
   <li><strong>Contadores operativos</strong>: se borran automáticamente en 48 horas.</li>
   <li><strong>Contenido de las conversaciones</strong>: nunca se guarda en el servidor.</li>
-  <li><strong>La ubicación del teléfono del niño</strong> (sección 2.8): solo la última, se sobrescribe con
+  <li><strong>La ubicación de un teléfono</strong> (sección 2.8): solo la última, se sobrescribe con
       cada solicitud y se borra al eliminar la cuenta. Un teléfono desvinculado de la familia deja de
-      aparecer para los padres.</li>
+      aparecer para los padres. Cuando un adulto desactiva "Encontrar mi teléfono", la última ubicación de
+      su teléfono se borra en ese momento.</li>
   <li><strong>Token de notificaciones</strong> (sección 2.9): hasta que el sistema operativo lo revoque, o
       hasta que se elimine la cuenta.</li>
   <li><strong>El registro de la semana gratis</strong> (sección 2.7): <strong>se conserva sin límite de
@@ -340,14 +361,14 @@ module.exports = {
 </p>
 
 <footer>
-  Tori · Política de privacidad · versión 1.3 · 28 de septiembre de 2026
+  Tori · Política de privacidad · versión 1.4 · 3 de octubre de 2026
 </footer>`,
   },
 
   deleteAccount: {
     title: 'Eliminar tu cuenta · Tori',
     h1: 'Eliminar tu cuenta y tus datos',
-    sub: 'Tori · actualizado el 13 de septiembre de 2026',
+    sub: 'Tori · actualizado el 3 de octubre de 2026',
     body: `
 <p>
   Esta página explica cómo eliminar la cuenta de Tori de tu familia y toda la información guardada con
@@ -385,7 +406,7 @@ module.exports = {
   <tr><td>El documento familiar en el servidor: hijos, tareas, hábitos, puntos, premios, eventos</td><td>De inmediato</td></tr>
   <tr><td>Las fotos de prueba de tareas subidas al servidor</td><td>De inmediato</td></tr>
   <tr><td>El registro de dispositivos vinculados y los códigos activos</td><td>De inmediato</td></tr>
-  <tr><td>La última ubicación de los teléfonos de los niños y los tokens de notificaciones ("Encontrar el teléfono")</td><td>De inmediato</td></tr>
+  <tr><td>La última ubicación de los teléfonos vinculados y los tokens de notificaciones ("Encontrar el teléfono")</td><td>De inmediato</td></tr>
   <tr><td>Toda la información guardada en el propio dispositivo</td><td>De inmediato (al borrar desde la app)</td></tr>
   <tr><td>Contadores operativos anónimos: solicitudes por día, sin contenido</td><td>Hasta 48 horas</td></tr>
 </table>
