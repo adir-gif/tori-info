@@ -69,7 +69,7 @@
 
 <header>
   <h1>Tori privacy policy</h1>
-  <p class="sub">Last updated: 3 October 2026 · version 1.4</p>
+  <p class="sub">Last updated: 18 October 2026 · version 1.5</p>
 </header>
 
 <p>
@@ -83,7 +83,9 @@
   <strong>Three things worth knowing straight away:</strong>
   <ul style="margin-bottom:0">
     <li><strong>Children have no account</strong> in Tori. No email, no password, no phone number.</li>
-    <li>The app contains <strong>no ads, no analytics tools and no third-party trackers</strong>.</li>
+    <li>The app shows <strong>no ads</strong>. To measure our own advertising, <strong>a parent's phone</strong> tells
+        Meta and TikTok that Tori was installed and opened, and when a subscription starts —
+        <strong>never a child's phone</strong>, and never with the advertising identifier (section 2.10).</li>
     <li>For a family using Tori <strong>on a single device, the data stays on the phone</strong>.
         No name, chore, photo or other content is sent to the server. The only thing recorded
         on the server at install time is a <strong>hashed device fingerprint</strong>, so that the
@@ -262,11 +264,46 @@
   service</strong> (iOS). The notification itself contains no location, names or family content.
 </p>
 
+<h3>2.10 · Measuring our own advertising — Meta and TikTok</h3>
+<p>
+  We advertise Tori on Facebook, Instagram and TikTok. To know which ads lead to installs, the app includes
+  the measurement tools (SDKs) of <strong>Meta</strong> and <strong>TikTok</strong>, under strict limits:
+</p>
+<ul>
+  <li><strong>Only on a parent's phone:</strong> the phone on which the family was set up, or a phone that was
+      paired with a parent's code. <strong>On a child's phone they never start.</strong> A shared device on which
+      the family was not set up does not start them either.</li>
+  <li><strong>What is sent:</strong> that the app was installed, that it was opened, and that a subscription
+      started (without the amount). With these events the tools send technical details: an identifier they
+      create for this installation, the device model and operating system, language, time zone and mobile
+      carrier. The providers also receive the IP address.</li>
+  <li><strong>What is not sent:</strong> names, ages, chores, photos, location or any other family content —
+      and <strong>no advertising identifier</strong>. Tori does not read the IDFA (iPhone) or the Google
+      advertising ID (Android), and does not ask for permission to track.</li>
+  <li><strong>Not in Europe:</strong> on a device whose region is set to a country of the European Economic
+      Area, the United Kingdom or Switzerland, these tools do not start at all.</li>
+</ul>
+<p>
+  Meta and TikTok use these events to measure and improve the delivery of our ads, under their own policies:
+  <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta's privacy policy</a>,
+  <a href="https://www.tiktok.com/legal/page/row/privacy-policy/en" target="_blank" rel="noopener">TikTok's privacy policy</a>.
+  <strong>To opt out of ads based on your activity in other apps:</strong> on Facebook or Instagram, in
+  Accounts Center → Ad preferences; on TikTok, in Settings and privacy → Ads. On iPhone, because Tori does not
+  ask for permission to track, Apple's rules do not allow this data to be used to track you across other
+  companies' apps and websites.
+</p>
+<p>
+  Separately, on iPhone Tori uses <strong>Apple's SKAdNetwork</strong>: Apple itself tells the ad network,
+  anonymously and with a delay, that an install came from one of its ads. Nothing is sent from the app, and no
+  identifier is involved. This happens on every iPhone, a child's included.
+</p>
+
 <h2>3 · What is <u>not</u> collected</h2>
 <table>
   <tr><th>Category</th><th>How it stands in Tori</th></tr>
   <tr><td>Ads and ad networks</td><td>None. The app shows no advertising at all.</td></tr>
-  <tr><td>Analytics and tracking tools</td><td>None. No usage-analysis or tracking SDK is installed.</td></tr>
+  <tr><td>Analytics and tracking tools</td><td>No usage analysis. The ad-measurement tools of Meta and TikTok run only on a parent's phone and send only install, open and subscription start (section 2.10).</td></tr>
+  <tr><td>Advertising identifier (IDFA, Google advertising ID)</td><td>Not read, and no permission to track is requested.</td></tr>
   <tr><td>Continuous location tracking or location history</td><td>None. Location is read only when a parent asks, only on a phone where this was allowed, and only the latest one is stored (section 2.8).</td></tr>
   <tr><td>Contacts, device calendar, full gallery</td><td>Not accessible. Only a photo picked explicitly.</td></tr>
   <tr><td>A child's email / password / phone</td><td>Do not exist. A child has no account.</td></tr>
@@ -287,6 +324,8 @@
       the child's phone (section 2.8).</li>
   <li>There is no free chat between children in the app, no link to social networks and no external content.</li>
   <li>The parent can turn the smart helper off for children at any moment, and delete all of the data.</li>
+  <li>Nothing is sent to advertising platforms from a child's phone: Meta's and TikTok's tools never start on it
+      (section 2.10).</li>
 </ul>
 <p>
   We do not knowingly collect personal information from children beyond what is described here. A parent
@@ -303,7 +342,8 @@
 <p>
   Requests to Pingo are processed by <strong>OpenAI</strong>, which may process them outside the
   European Union, including in the United States. The same applies to the notification services (Expo,
-  Google, Apple) and to subscription management (RevenueCat).
+  Google, Apple), to subscription management (RevenueCat), and to the ad-measurement events that Meta and
+  TikTok receive (section 2.10).
 </p>
 
 <h2>6 · How long it is kept</h2>
@@ -323,6 +363,8 @@
   <li><strong>The free-week record</strong> (section 2.7) — <strong>kept indefinitely</strong>. That is its
       entire purpose: a record deleted after a year means another free week for whoever waited. It
       contains a hashed fingerprint and a date only, and does not identify a person.</li>
+  <li><strong>Ad-measurement events</strong> (section 2.10) — kept by Meta and TikTok under their own policies.
+      We see only aggregated reports, and keep no copy.</li>
 </ul>
 
 <h2>7 · How to delete everything</h2>
@@ -336,6 +378,8 @@
     account and is not linked to it — it is a hashed device fingerprint and a date, and deleting it
     would in effect cancel the one-time trial. Keeping it rests on a legitimate interest in preventing
     abuse. To request that it be deleted as well, contact us at the address below.</p>
+  <p>Ad-measurement events (section 2.10) are kept by Meta and TikTok, are not linked to the family document,
+    and are not deleted by this action; their deletion is governed by those providers' policies.</p>
   <p style="margin-bottom:0"><strong>Without the app:</strong>
     You can send a deletion request to
     <a href="mailto:adirkatar@gmail.com?subject=Tori%20account%20deletion%20request">adirkatar@gmail.com</a>.
@@ -387,6 +431,8 @@
 </p>
 <p><strong>What changed in each version:</strong></p>
 <ul>
+  <li><strong>1.5 · 18 October 2026</strong> — measuring our own advertising with Meta and TikTok, on a parent's
+      phone only, and Apple's SKAdNetwork (2.10); the summary at the top and sections 3–7.</li>
   <li><strong>1.4 · 3 October 2026</strong> — "Find the phone" also for a parent's phone (2.8); a recipe
       photo in the shopping list (2.4); a notification token on every paired phone (2.9); this section.</li>
   <li><strong>1.3 · 28 September 2026</strong> — "Find the phone" for a child's phone (2.8) and the
@@ -401,7 +447,7 @@
 </p>
 
 <footer>
-  Tori · Privacy policy · version 1.4 · 3 October 2026
+  Tori · Privacy policy · version 1.5 · 18 October 2026
 </footer>
 
 </div>

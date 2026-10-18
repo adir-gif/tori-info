@@ -34,7 +34,7 @@ module.exports = {
   privacy: {
     title: 'Politique de confidentialité · Tori',
     h1: 'Politique de confidentialité de Tori',
-    sub: 'Dernière mise à jour : 3 octobre 2026 · version 1.4',
+    sub: 'Dernière mise à jour : 18 octobre 2026 · version 1.5',
     body: `
 <p>
   Tori est une application de tâches, d’habitudes et de récompenses pour les familles. Ce document
@@ -48,7 +48,10 @@ module.exports = {
   <ul style="margin-bottom:0">
     <li>Les <strong>enfants n’ont pas de compte</strong> dans Tori. Pas d’e-mail, pas de mot de passe, pas de
         numéro de téléphone.</li>
-    <li>L’application ne contient <strong>ni publicité, ni outil d’analyse, ni traceur</strong> tiers.</li>
+    <li>L’application <strong>n’affiche aucune publicité</strong>. Pour mesurer notre propre publicité, <strong>le
+        téléphone d’un parent</strong> indique à Meta et à TikTok que Tori a été installée et ouverte, et quand un
+        abonnement commence — <strong>jamais le téléphone d’un enfant</strong>, et jamais avec l’identifiant
+        publicitaire (section 2.10).</li>
     <li>Pour une famille qui utilise Tori <strong>sur un seul appareil, les données restent sur le
         téléphone</strong>. Aucun nom, aucune tâche, aucune photo ni aucun contenu n’est envoyé au serveur.
         La seule chose enregistrée sur le serveur à l’installation est une <strong>empreinte chiffrée de
@@ -237,11 +240,50 @@ module.exports = {
   (iOS). La notification elle-même ne contient ni position, ni prénoms, ni contenu de la famille.
 </p>
 
+<h3>2.10 · Mesurer notre propre publicité : Meta et TikTok</h3>
+<p>
+  Nous faisons de la publicité pour Tori sur Facebook, Instagram et TikTok. Pour savoir quelles annonces mènent à
+  des installations, l’application intègre les outils de mesure (SDK) de <strong>Meta</strong> et de
+  <strong>TikTok</strong>, dans des limites strictes :
+</p>
+<ul>
+  <li><strong>Uniquement sur le téléphone d’un parent :</strong> le téléphone sur lequel la famille a été créée, ou
+      un téléphone lié avec un code de parent. <strong>Sur le téléphone d’un enfant, ils ne démarrent
+      jamais.</strong> Un appareil partagé sur lequel la famille n’a pas été créée ne les démarre pas non plus.</li>
+  <li><strong>Ce qui est envoyé :</strong> que l’application a été installée, qu’elle a été ouverte et qu’un
+      abonnement a commencé (sans le montant). Avec ces événements, les outils envoient des informations
+      techniques : un identifiant qu’ils créent pour cette installation, le modèle de l’appareil et le système
+      d’exploitation, la langue, le fuseau horaire et l’opérateur mobile. Les fournisseurs reçoivent aussi
+      l’adresse IP.</li>
+  <li><strong>Ce qui n’est pas envoyé :</strong> prénoms, âges, tâches, photos, position ou tout autre contenu de
+      la famille, et <strong>aucun identifiant publicitaire</strong>. Tori ne lit ni l’IDFA (iPhone) ni
+      l’identifiant publicitaire Google (Android), et ne demande pas d’autorisation de suivi.</li>
+  <li><strong>Pas en Europe :</strong> sur un appareil dont la région est un pays de l’Espace économique européen,
+      le Royaume-Uni ou la Suisse, ces outils ne démarrent pas.</li>
+</ul>
+<p>
+  Meta et TikTok utilisent ces événements pour mesurer et améliorer la diffusion de nos annonces, selon leurs
+  propres politiques :
+  <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">politique de confidentialité de Meta</a>,
+  <a href="https://www.tiktok.com/legal/page/row/privacy-policy/en" target="_blank" rel="noopener">politique de confidentialité de TikTok</a>.
+  <strong>Pour refuser les publicités fondées sur votre activité dans d’autres applications :</strong> sur Facebook
+  ou Instagram, dans l’Espace Comptes → Préférences publicitaires ; sur TikTok, dans Paramètres et confidentialité
+  → Publicités. Sur iPhone, comme Tori ne demande pas d’autorisation de suivi, les règles d’Apple n’autorisent
+  pas l’utilisation de ces données pour vous suivre dans les applications et sites web d’autres entreprises.
+</p>
+<p>
+  Par ailleurs, sur iPhone, Tori utilise <strong>SKAdNetwork d’Apple</strong> : Apple elle-même indique au réseau
+  publicitaire, de façon anonyme et avec un délai, qu’une installation provient de l’une de ses annonces.
+  L’application n’envoie rien et aucun identifiant n’intervient. Cela se produit sur chaque iPhone, y compris
+  celui d’un enfant.
+</p>
+
 <h2>3 · Ce qui n’est <u>pas</u> collecté</h2>
 <table>
   <tr><th>Catégorie</th><th>Où en est Tori</th></tr>
   <tr><td>Publicité et régies publicitaires</td><td>Aucune. L’application n’affiche pas de publicité.</td></tr>
-  <tr><td>Outils d’analyse et de suivi</td><td>Aucun. Aucun SDK d’analyse d’usage ou de suivi n’est installé.</td></tr>
+  <tr><td>Outils d’analyse et de suivi</td><td>Aucune analyse d’usage. Les outils de mesure publicitaire de Meta et de TikTok ne fonctionnent que sur le téléphone d’un parent et n’envoient que l’installation, l’ouverture et le début d’un abonnement (section 2.10).</td></tr>
+  <tr><td>Identifiant publicitaire (IDFA, identifiant publicitaire Google)</td><td>Non lu, et aucune autorisation de suivi n’est demandée.</td></tr>
   <tr><td>Suivi de localisation continu ou historique des positions</td><td>Aucun. La position n’est mesurée qu’à la demande d’un parent, seulement sur un téléphone où cela a été autorisé, et seule la dernière est conservée (section 2.8).</td></tr>
   <tr><td>Contacts, agenda de l’appareil, galerie complète</td><td>Non accessibles. Uniquement une photo choisie explicitement.</td></tr>
   <tr><td>E-mail / mot de passe / téléphone d’un enfant</td><td>N’existent pas. Un enfant n’a pas de compte.</td></tr>
@@ -264,6 +306,8 @@ module.exports = {
       contenu externe.</li>
   <li>Le parent peut désactiver l’assistant intelligent pour les enfants à tout moment, et supprimer toutes
       les données.</li>
+  <li>Rien n’est envoyé aux plateformes publicitaires depuis le téléphone d’un enfant : les outils de Meta et de
+      TikTok n’y démarrent jamais (section 2.10).</li>
 </ul>
 <p>
   Nous ne collectons pas sciemment de données personnelles d’enfants au-delà de ce qui est décrit ici. Un
@@ -281,7 +325,8 @@ module.exports = {
 <p>
   Les requêtes adressées à Pingo sont traitées par <strong>OpenAI</strong>, qui peut les traiter en dehors
   de l’Union européenne, y compris aux États-Unis. Il en va de même pour les services de notification
-  (Expo, Google, Apple) et la gestion des abonnements (RevenueCat).
+  (Expo, Google, Apple), la gestion des abonnements (RevenueCat) et les événements de mesure publicitaire reçus
+  par Meta et TikTok (section 2.10).
 </p>
 
 <h2>6 · Durée de conservation</h2>
@@ -302,6 +347,8 @@ module.exports = {
       durée</strong>. C’est toute sa raison d’être : un enregistrement supprimé au bout d’un an signifie une
       semaine gratuite de plus pour qui a attendu. Il ne contient qu’une empreinte chiffrée et une date, et
       n’identifie pas une personne.</li>
+  <li><strong>Événements de mesure publicitaire</strong> (section 2.10) — conservés par Meta et TikTok selon leurs
+      propres politiques. Nous ne voyons que des rapports agrégés et n’en gardons aucune copie.</li>
 </ul>
 
 <h2>7 · Comment tout supprimer</h2>
@@ -314,6 +361,9 @@ module.exports = {
     fait pas partie du compte et ne lui est pas lié — c’est une empreinte chiffrée de l’appareil et une date,
     et le supprimer annulerait en pratique l’essai unique. Sa conservation repose sur un intérêt légitime à
     prévenir les abus. Pour en demander également la suppression, écrivez-nous à l’adresse ci-dessous.</p>
+  <p>Les événements de mesure publicitaire (section 2.10) sont conservés par Meta et TikTok, ne sont pas liés au
+    document de la famille et ne sont pas supprimés par cette action ; leur suppression relève des politiques de
+    ces fournisseurs.</p>
   <p style="margin-bottom:0"><strong>Sans l’application :</strong>
     Vous pouvez envoyer une demande de suppression à
     <a href="mailto:${MAIL}?subject=${SUBJ}">${MAIL}</a>.
@@ -367,6 +417,8 @@ module.exports = {
 </p>
 <p><strong>Ce qui a changé à chaque version :</strong></p>
 <ul>
+  <li><strong>1.5 · 18 octobre 2026</strong> — mesure de notre propre publicité avec Meta et TikTok, uniquement
+      sur le téléphone d’un parent, et SKAdNetwork d’Apple (2.10) ; le résumé en tête de page et les sections 3 à 7.</li>
   <li><strong>1.4 · 3 octobre 2026</strong> — « Retrouver le téléphone » aussi pour le téléphone d’un
       parent (2.8) ; photo d’une recette dans la liste de courses (2.4) ; jeton de notification sur chaque
       téléphone relié (2.9) ; cette section.</li>
@@ -383,7 +435,7 @@ module.exports = {
 </p>
 
 <footer>
-  Tori · Politique de confidentialité · version 1.4 · 3 octobre 2026
+  Tori · Politique de confidentialité · version 1.5 · 18 octobre 2026
 </footer>`,
   },
 
