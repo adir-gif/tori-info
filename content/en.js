@@ -36,7 +36,7 @@ module.exports = {
   privacy: {
     title: 'Privacy policy · Tori',
     h1: 'Tori privacy policy',
-    sub: 'Last updated: 18 October 2026 · version 1.5',
+    sub: 'Last updated: 26 October 2026 · version 1.5',
     body: `
 <p>
   Tori is a chores, habits and rewards app for families. This document explains exactly
@@ -76,7 +76,7 @@ module.exports = {
 <ul>
   <li>The <strong>family name</strong> and the first names or nicknames of parents and children</li>
   <li><strong>Each child's age or year group</strong> — used to set the interface mode (5–8 / 9–12 / 13–15)</li>
-  <li>A <strong>profile picture</strong> for a child, if the parent chose to add one — kept on the device</li>
+  <li>A <strong>profile picture</strong> for a child or a parent, if they chose to add one — kept on the device, and in a family with more than one device also on the server (2.3)</li>
   <li>The family's <strong>chores, habits, points, energy, rewards and calendar events</strong></li>
   <li><strong>Preferences</strong>: reminder time, display mode, approval rules</li>
 </ul>
@@ -95,12 +95,17 @@ module.exports = {
   a Google or Apple account, or any other personal identity.
 </p>
 
-<h3>2.3 · Photo proof of a chore</h3>
+<h3>2.3 · Photo proof of a chore, and profile pictures</h3>
 <p>
   A parent can mark a chore as requiring a photo. In that case the photo the child takes is
   <strong>stored in the family's storage area on the server</strong>, in a separate folder tied to
   that family alone. Database permission rules prevent access to another family's photos. The
   photos are deleted together with the account.
+</p>
+<p>
+  A child’s or a parent’s <strong>profile picture</strong> is stored there too, in a family connected on more than one
+  device, so that it shows on every phone in the family. It is deleted from the server as soon as it is replaced or
+  removed, and also with the account.
 </p>
 
 <h3>2.4 · Conversations with Pingo and homework help</h3>
@@ -337,7 +342,7 @@ module.exports = {
 <div class="card">
   <p style="margin-top:0"><strong>From inside the app:</strong>
     Settings → Advanced → <em>Delete account and data</em>.
-    The action deletes the family document, the proof photos, the device records, the latest location
+    The action deletes the family document, the proof and profile photos, the device records, the latest location
     and the notification tokens from the server,
     and resets the device. There is no way to restore it.</p>
   <p><strong>What is not deleted:</strong> the free-week record (section 2.7). It is not part of the
@@ -397,8 +402,8 @@ module.exports = {
 </p>
 <p><strong>What changed in each version:</strong></p>
 <ul>
-  <li><strong>1.5 · 18 October 2026</strong> — measuring our own advertising with Meta and TikTok, on a parent's
-      phone only, and Apple's SKAdNetwork (2.10); the summary at the top and sections 3–7.</li>
+  <li><strong>1.5 · 26 October 2026</strong> — measuring our own advertising with Meta and TikTok, on a parent's
+      phone only, and Apple's SKAdNetwork (2.10); profile pictures also on the server, so they show on every phone in the family (2.3); the summary at the top and sections 3–7.</li>
   <li><strong>1.4 · 3 October 2026</strong> — "Find the phone" also for a parent's phone (2.8); a recipe
       photo in the shopping list (2.4); a notification token on every paired phone (2.9); this section.</li>
   <li><strong>1.3 · 28 September 2026</strong> — "Find the phone" for a child's phone (2.8) and the
@@ -413,7 +418,7 @@ module.exports = {
 </p>
 
 <footer>
-  Tori · Privacy policy · version 1.5 · 18 October 2026
+  Tori · Privacy policy · version 1.5 · 26 October 2026
 </footer>`,
   },
 
@@ -457,6 +462,7 @@ module.exports = {
   <tr><th>What</th><th>When</th></tr>
   <tr><td>The family document on the server — children, chores, habits, points, rewards, calendar events</td><td>Immediately</td></tr>
   <tr><td>Chore proof photos uploaded to the server</td><td>Immediately</td></tr>
+  <tr><td>Profile pictures uploaded to the server</td><td>Immediately</td></tr>
   <tr><td>The record of paired devices and any active pairing codes</td><td>Immediately</td></tr>
   <tr><td>The latest location of the paired phones and the notification tokens ("Find the phone")</td><td>Immediately</td></tr>
   <tr><td>All data stored on the device itself</td><td>Immediately (when deleting from the app)</td></tr>
